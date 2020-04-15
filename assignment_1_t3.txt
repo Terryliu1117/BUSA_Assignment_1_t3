@@ -1,0 +1,17 @@
+Question 1
+a.   mysql -u awkologist -p compbiol -e 'select * from expression' > ~/expression_output.tab   
+          
+b.   mysql -u awkologist -p compbiol -e 'select * from annotation' > ~/annotation_output.tab
+
+c.   mysql -u awkologist -p compbiol -e 'select a.gene,a.function,e.expr_value from annotation a inner join expression e on a.gene=e.gene'
+
+d.   (ii) mysql -u awkologist -p compbiol -e 'select distinct a1.metabolism from annotation a1,annotation a2 where a1.metabolism=a2.metabolism and a1.gene<>a2.gene'
+
+Question 2
+a.  (iii) mysql -u awkologist -p compbiol -e 'select m.LastName,m.FirstName from Member m where m.Coach IS NULL'
+
+b.  (iii) mysql -u awkologist -p compbiol -e 'select m.LastName,m.FirstName from Member m where year(m.JoinDate)=2010'
+
+c.  (iii)  mysql -u awkologist -p compbiol -e 'select distinct m.MemberID,m.LastName,m.FirstName from Member m inner join Entry e on e.MemberID=m.MemberID where not exists(select * from Entry e where e.MemberID= m.MemberID and e.Year=2014)'
+
+d.  (ii)  mysql -u awkologist -p compbiol -e 'select e.MemberID from Entry e where Year in (2013,2014,2015) group by e.MemberID having count(distinct e.Year)=3'
